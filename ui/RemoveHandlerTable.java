@@ -5,8 +5,11 @@
  */
 package grapher.ui;
 
+import java.util.ArrayList;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 
 /**
@@ -22,8 +25,12 @@ public class RemoveHandlerTable implements EventHandler<ActionEvent> {
     
      @Override
      public void handle(ActionEvent event) {
-        int itemSelected = table.getSelectionModel().getSelectedIndex();
-        if(itemSelected >= 0)
-            table.getItems().remove(itemSelected);  
+
+        //ObservableList<TablePosition> list = table.getSelectionModel().getSelectedCells();
+        ObservableList<ColorFunction> list = table.getSelectionModel().getSelectedItems();
+        ArrayList<Integer> intList = new ArrayList<>();
+        //for(TablePosition tab : list)
+        //s    intList.add(tab.getRow());
+        table.getItems().removeAll(list);
      }
 }
