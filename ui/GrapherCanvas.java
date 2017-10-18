@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import grapher.fc.Function;
 import grapher.fc.FunctionFactory;
+import java.util.ArrayList;
 import java.util.Collection;
 import javafx.application.Application.Parameters;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TablePosition;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
@@ -50,6 +52,7 @@ public class GrapherCanvas extends Canvas {
 
         protected Vector<Function> functions = new Vector<Function>();
         protected Vector<Color> functionsColor = new Vector<>();
+        protected Collection<Integer> boldFunctions = new ArrayList<>();
 
         public GrapherCanvas(Parameters params) {
                 super(WIDTH, HEIGHT);
@@ -260,7 +263,7 @@ public class GrapherCanvas extends Canvas {
                         for(int i = 0; i < N; i++) {
                                 Ys[i] = Y(f.y(xs[i]));
                         }
-                        if(j == boldFunction)
+                        if(boldFunctions.contains(j))
                             gc.setLineWidth(3);
                         gc.setStroke(functionsColor.get(j));
 
@@ -365,8 +368,9 @@ public class GrapherCanvas extends Canvas {
             redraw();
         }
         //Sera appellee quand l'utilisateur choisira un element dans la table
-        public void setBoldFunction(int number){
-            this.boldFunction = number;
+        public void setBoldFunction(Collection<Integer> list){
+            //this.boldFunction = number;
+            boldFunctions = list;
             redraw();
         }
 }
