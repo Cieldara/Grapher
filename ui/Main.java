@@ -20,8 +20,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,7 +50,7 @@ public class Main extends Application {
                 list.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        canvas.setBoldFunction(newValue.intValue());       
+                       // canvas.setBoldFunction(newValue.intValue());       
                     }
                 });
                 //Pour rendre la liste editable
@@ -82,6 +84,7 @@ public class Main extends Application {
         
         public void initTable(TableView<ColorFunction> table, GrapherCanvas canvas){
             table.setEditable(true);
+            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             
             //Colonne pour le ColorPicker
              TableColumn<ColorFunction,ColorPicker> colorCol = new TableColumn<ColorFunction,ColorPicker>("Couleur");
@@ -131,7 +134,12 @@ public class Main extends Application {
              table.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        canvas.setBoldFunction(newValue.intValue());       
+                      
+                        ObservableList<TablePosition> list = table.getSelectionModel().getSelectedCells();
+                        ArrayList<Integer> intList = new ArrayList<>();
+                        for(TablePosition tab : list)
+                            intList.add(tab.getRow());
+                        canvas.setBoldFunction(intList);
                     }
                 });
              
