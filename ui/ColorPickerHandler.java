@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 /**
  *
  * @author GONTARD Benjamin
+ * 
+ * Handler utilisé pour les ColorPicker
  */
 public class ColorPickerHandler implements EventHandler<ActionEvent> {
     TableView<ColorFunction> table;
@@ -24,8 +26,6 @@ public class ColorPickerHandler implements EventHandler<ActionEvent> {
         this.canvas = canvas;
     }
     
-    
-
     @Override
     public void handle(ActionEvent event) {
         ArrayList<ColorFunction> func = new ArrayList<>();

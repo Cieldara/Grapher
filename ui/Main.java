@@ -16,7 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -27,7 +26,6 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -39,48 +37,6 @@ import javafx.util.StringConverter;
 
 
 public class Main extends Application {
-    
-        public void initList(ListView<Function> list,GrapherCanvas canvas){
-            list.getItems().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
-                        //canvas.initFunctions(list.getItems());     
-                    }
-                });
-                list.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                       // canvas.setBoldFunction(newValue.intValue());       
-                    }
-                });
-                //Pour rendre la liste editable
-                list.setEditable(true);
-                list.setCellFactory(TextFieldListCell.forListView(new StringConverter<Function>() {
-                    @Override
-                    public String toString(Function object) {
-                        return object.toString();
-                    }
-
-                    @Override
-                    public Function fromString(String string) {
-                        
-                        return FunctionFactory.createFunction(string);
-                    }
-                }));
-                list.setOnEditCommit(new EventHandler<ListView.EditEvent<Function>>() {
-                    @Override
-                    public void handle(ListView.EditEvent<Function> event) {
-                        final Function f = event.getNewValue();
-                        int index = event.getIndex();
-                        list.getItems().set(index, f);
-                    }
-                });
-                //Peupler la ListView avec les fonctions passees en argument
-            for(String expression : getParameters().getRaw()) {
-			Function f = FunctionFactory.createFunction(expression);
-                        list.getItems().add(f);
-            }    
-        }
         
         public void initTable(TableView<ColorFunction> table, GrapherCanvas canvas){
             table.setEditable(true);
@@ -159,9 +115,6 @@ public class Main extends Application {
 	public void start(Stage stage) {
                 //Creation du canvas
                 GrapherCanvas canvas = new GrapherCanvas(getParameters());
-                //Creation en intitialisation de la liste de fonctions
-                ListView<Function> list = new ListView<Function>();
-                initList(list, canvas);
                 
                 
                 //Creation et initialisation de la table
@@ -198,6 +151,7 @@ public class Main extends Application {
                 menuBar.getMenus().add(expression);
                 expression.getItems().addAll(addItem,removeItem);
                 
+                //Le splitpane qui séparera la table et le canvas.
                 SplitPane split = new SplitPane();
                 split.getItems().addAll(buttonPane,canvas);
 		root.setCenter(split);

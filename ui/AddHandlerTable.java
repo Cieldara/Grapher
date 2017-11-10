@@ -20,6 +20,8 @@ import javafx.scene.paint.Color;
 /**
  *
  * @author GONTARD Benjamin
+ * 
+ * Handler utilisé pour l'ajout d'éléments dans la TableView
  */
 public class AddHandlerTable implements EventHandler<ActionEvent> {
     TableView<ColorFunction>table;
@@ -38,6 +40,8 @@ public class AddHandlerTable implements EventHandler<ActionEvent> {
             dialog.setHeaderText("Expression");
             Optional<String> result = dialog.showAndWait();
 
+            
+            //Si l'utilisateur a entré une nouvelle fonction dans le champ prévu à cet effet : l'ajouter dans la table avec le ColorPicker associé
             if(result.isPresent()){
                 ObservableList<ColorFunction> col = table.getItems();
                 Function f = FunctionFactory.createFunction(dialog.getResult());

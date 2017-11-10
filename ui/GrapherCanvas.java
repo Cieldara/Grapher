@@ -21,7 +21,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.TablePosition;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
@@ -64,7 +63,7 @@ public class GrapherCanvas extends Canvas {
                         functions.add(FunctionFactory.createFunction(param));
                         functionsColor.add(Color.BLACK);
                 }
-
+                //Implémentation de la machine a état. On utilise une classe anonyme.
                 this.addEventHandler(MouseEvent.ANY, new EventHandler<MouseEvent>() {
                         public static final int D_DRAG = 5;
                         Point2D point;
