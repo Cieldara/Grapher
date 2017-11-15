@@ -16,20 +16,19 @@ import javafx.scene.control.TableView;
  * @author GONTARD Benjamin
  */
 public class RemoveHandlerTable implements EventHandler<ActionEvent> {
-    TableView<ColorFunction>table;
-    public RemoveHandlerTable(TableView<ColorFunction>table){
+
+    TableView<ColorFunction> table;
+
+    public RemoveHandlerTable(TableView<ColorFunction> table) {
         super();
         this.table = table;
     }
-    
-     @Override
-     public void handle(ActionEvent event) {
 
-        //ObservableList<TablePosition> list = table.getSelectionModel().getSelectedCells();
+    @Override
+    public void handle(ActionEvent event) {
+
         ObservableList<ColorFunction> list = table.getSelectionModel().getSelectedItems();
         ArrayList<Integer> intList = new ArrayList<>();
-        //for(TablePosition tab : list)
-        //s    intList.add(tab.getRow());
         table.getItems().removeAll(list);
-     }
+    }
 }

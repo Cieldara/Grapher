@@ -13,10 +13,11 @@ import javafx.scene.control.TableView;
 /**
  *
  * @author GONTARD Benjamin
- * 
+ *
  * Handler utilisé pour les ColorPicker
  */
 public class ColorPickerHandler implements EventHandler<ActionEvent> {
+
     TableView<ColorFunction> table;
     GrapherCanvas canvas;
 
@@ -25,13 +26,13 @@ public class ColorPickerHandler implements EventHandler<ActionEvent> {
         this.table = table;
         this.canvas = canvas;
     }
-    
+
     @Override
     public void handle(ActionEvent event) {
         ArrayList<ColorFunction> func = new ArrayList<>();
-        for(ColorFunction col : table.getItems()){
+        for (ColorFunction col : table.getItems()) {
             func.add(col);
         }
-        canvas.initFunctions(func);  
-    }  
+        canvas.initFunctions(func);
+    }
 }

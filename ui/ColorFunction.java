@@ -11,18 +11,16 @@ import javafx.scene.control.ColorPicker;
 /**
  *
  * @author GONTARD Benjamin
- * 
- * Notre TableView stockera des éléments de type ColorFunction.
- * Deux colonnes :
- *  -Une pour le ColorPicker
- *  -L'autre pour la fonction
+ *
+ * Notre TableView stockera des éléments de type ColorFunction. Deux colonnes :
+ * -Une pour le ColorPicker -L'autre pour la fonction
  */
 public class ColorFunction {
+
     public ColorPicker color;
     public Function function;
-    
-    
-    public ColorFunction(Function f, ColorPicker c){
+
+    public ColorFunction(Function f, ColorPicker c) {
         this.function = f;
         this.color = c;
     }
@@ -42,6 +40,5 @@ public class ColorFunction {
     public void setFunction(Function function) {
         this.function = function;
     }
-    
-    
+
 }
