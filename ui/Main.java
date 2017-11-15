@@ -152,7 +152,7 @@ public class Main extends Application {
                     intList.add(tab.getRow());
                 }
                 canvas.setBoldFunction(intList);
-                if (table.getItems().isEmpty()) {
+                if (list.isEmpty()) {
                     remove.setDisable(true);
                     removeItem.setDisable(true);
                 } else {
